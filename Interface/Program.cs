@@ -16,20 +16,10 @@ namespace Interface
         static void Main()
         {
 
-            using (LibraryContext context = new LibraryContext())
-            {
-                Book book = new Book();
-                book.Title = "Кобзар";
-                book.Author = "Шевченко";
-
-                context.Books.Add(book);
-                context.SaveChanges();
-
-            }
-            Console.WriteLine("Done");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+       
         }
     }
 }
