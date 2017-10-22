@@ -51,8 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\Author.cs" />
     <Compile Include="DataModel\Book.cs" />
-    <Compile Include="DataModel\LibraryContext.cs" />
+    <Compile Include="DataModel\SchoolDBContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

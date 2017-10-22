@@ -10,6 +10,8 @@ namespace Interface.DataModel
     {
         public int BookId { get; set; }
         public string Title { get; set; }
-        public string Author { get; set; }
+
+        public virtual ICollection<Author> Authors { get; set; }
+
     }
 }

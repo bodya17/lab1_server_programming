@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel\Book.cs" />
+    <Compile Include="DataModel\Author.cs" />
     <Compile Include="DataModel\LibraryContext.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

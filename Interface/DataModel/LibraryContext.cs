@@ -2,6 +2,7 @@ namespace Interface.DataModel
 {
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.ModelConfiguration.Conventions;
     using System.Linq;
 
     public class LibraryContext : DbContext
@@ -18,6 +19,13 @@ namespace Interface.DataModel
         }
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        //    base.OnModelCreating(modelBuilder);
+        //}
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 

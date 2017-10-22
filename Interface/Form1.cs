@@ -18,6 +18,15 @@ namespace Interface
             InitializeComponent();
             this.isIDAtZero = true;
             this.renderUpdateButtons = true;
+            //using (LibraryContext context = new LibraryContext())
+            //{
+            //    Author author = new Author();
+            //    author.Name = "Vasya";
+
+            //    context.Authors.Add(author);
+            //    //context.Author
+            //    context.SaveChanges();
+            //}
         }
 
         private bool isIDAtZero;
@@ -32,6 +41,8 @@ namespace Interface
 
             if (this.renderUpdateButtons)
             {
+                dataGridView1.Columns[0].ReadOnly = true; // disable id editing
+
                 var buttonCol = new DataGridViewButtonColumn();
                 buttonCol.Name = "Update";
                 buttonCol.HeaderText = "Update";
@@ -42,13 +53,14 @@ namespace Interface
                 this.renderUpdateButtons = false;
             } else
             {
+                dataGridView1.Columns[1].ReadOnly = true; // disable id editing
                 isIDAtZero = false;
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Display();
+            //this.Display();
         }
 
         private void createNewBookInDb(object sender, EventArgs e)
@@ -57,7 +69,7 @@ namespace Interface
             {
                 Book book = new Book();
                 book.Title = this.textBox1.Text;
-                book.Author = this.textBox2.Text;
+                //book.Author = this.textBox2.Text;
 
                 context.Books.Add(book);
                 context.SaveChanges();
@@ -120,7 +132,7 @@ namespace Interface
                 using (LibraryContext context = new LibraryContext())
                 {
                     Book bookToUpdate = context.Books.Where(x => x.BookId == id).Select(x => x).FirstOrDefault();
-                    bookToUpdate.Author = AuthorName;
+                    //bookToUpdate.Author = AuthorName;
                     bookToUpdate.Title = BookTitle;
                     context.Entry(bookToUpdate).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
