@@ -37,18 +37,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.author_data_grid = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.author_name_text_box = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.save_author_to_db_button = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.delete_author_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.book_data_grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.author_data_grid)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(305, 48);
+            this.button1.Location = new System.Drawing.Point(307, 340);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(130, 51);
+            this.textBox1.Location = new System.Drawing.Point(112, 51);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 1;
@@ -75,7 +75,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(79, 103);
+            this.label2.Location = new System.Drawing.Point(262, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 4;
@@ -85,7 +85,7 @@
             // 
             this.book_data_grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.book_data_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.book_data_grid.Location = new System.Drawing.Point(68, 151);
+            this.book_data_grid.Location = new System.Drawing.Point(57, 167);
             this.book_data_grid.Name = "book_data_grid";
             this.book_data_grid.Size = new System.Drawing.Size(436, 150);
             this.book_data_grid.TabIndex = 5;
@@ -93,7 +93,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(305, 102);
+            this.button2.Location = new System.Drawing.Point(388, 340);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(105, 23);
             this.button2.TabIndex = 6;
@@ -125,18 +125,10 @@
             // 
             this.author_data_grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.author_data_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.author_data_grid.Location = new System.Drawing.Point(542, 151);
+            this.author_data_grid.Location = new System.Drawing.Point(542, 142);
             this.author_data_grid.Name = "author_data_grid";
             this.author_data_grid.Size = new System.Drawing.Size(436, 150);
             this.author_data_grid.TabIndex = 9;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(130, 102);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 10;
             // 
             // author_name_text_box
             // 
@@ -156,7 +148,7 @@
             // 
             // save_author_to_db_button
             // 
-            this.save_author_to_db_button.Location = new System.Drawing.Point(814, 55);
+            this.save_author_to_db_button.Location = new System.Drawing.Point(789, 57);
             this.save_author_to_db_button.Name = "save_author_to_db_button";
             this.save_author_to_db_button.Size = new System.Drawing.Size(75, 23);
             this.save_author_to_db_button.TabIndex = 13;
@@ -167,21 +159,31 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(416, 48);
+            this.listBox1.Location = new System.Drawing.Point(307, 51);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 95);
             this.listBox1.TabIndex = 14;
+            // 
+            // delete_author_btn
+            // 
+            this.delete_author_btn.Location = new System.Drawing.Point(870, 57);
+            this.delete_author_btn.Name = "delete_author_btn";
+            this.delete_author_btn.Size = new System.Drawing.Size(94, 23);
+            this.delete_author_btn.TabIndex = 15;
+            this.delete_author_btn.Text = "Delete Selected";
+            this.delete_author_btn.UseVisualStyleBackColor = true;
+            this.delete_author_btn.Click += new System.EventHandler(this.delete_author_btn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 393);
+            this.ClientSize = new System.Drawing.Size(1000, 451);
+            this.Controls.Add(this.delete_author_btn);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.save_author_to_db_button);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.author_name_text_box);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.author_data_grid);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -212,11 +214,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.DataGridView author_data_grid;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox author_name_text_box;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button save_author_to_db_button;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button delete_author_btn;
     }
 }
 

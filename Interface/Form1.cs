@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Interface.DataModel;
+using System.Data.Entity;
 
 namespace Interface
 {
@@ -28,14 +29,20 @@ namespace Interface
         {
             using (LibraryContext context = new LibraryContext())
             {
-                var bookList = context.Books.Select(x => new { BookId = x.BookId, Title = x.Title }).ToList();
+                //var authorName = context.Books.Select(a => a.Authors.ToString).ToList();
+                var bookList = context.Books.Select(x => new {
+                    BookId = x.BookId,
+                    Title = x.Title,
+                //    Authors = x.Authors.Select(a => a.Name).ToString() 
+            }).ToList();
                 var authorList = context.Authors.Select(x => new { AuthorId = x.AuthorId, Name = x.Name}).ToList();
 
                 book_data_grid.DataSource = bookList;
                 author_data_grid.DataSource = authorList;
 
-                this.comboBox1.DataSource = context.Authors.Select(x => x.Name).ToList();
-                
+                this.listBox1.SelectionMode = SelectionMode.MultiSimple;
+
+                this.listBox1.DataSource = context.Authors.Select(x => x.Name).ToList(); ;
 
             }
 
@@ -43,13 +50,13 @@ namespace Interface
             {
                 //dataGridView1.Columns[0].ReadOnly = true; // disable id editing
 
-                var buttonCol = new DataGridViewButtonColumn();
-                buttonCol.Name = "Update";
-                buttonCol.HeaderText = "Update";
-                buttonCol.Text = "Update";
-                buttonCol.UseColumnTextForButtonValue = true;
+                //var buttonCol = new DataGridViewButtonColumn();
+                //buttonCol.Name = "Update";
+                //buttonCol.HeaderText = "Update";
+                //buttonCol.Text = "Update";
+                //buttonCol.UseColumnTextForButtonValue = true;
 
-                book_data_grid.Columns.Insert(2, buttonCol);
+                //book_data_grid.Columns.Insert(2, buttonCol);
                 this.renderUpdateButtons = false;
             } else
             {
@@ -69,11 +76,13 @@ namespace Interface
             {
                 Book book = new Book();
                 book.Title = this.textBox1.Text;
-                //book.Author = this.textBox2.Text;
-                Console.WriteLine(comboBox1.Text);
-                Author author = context.Authors.Where(a => a.Name == comboBox1.Text).Single();
-                author.Books.Add(book);
-               //book.Authors.Add(author);
+
+
+                foreach (var item in listBox1.SelectedItems)
+                {
+                    Author author = context.Authors.Where(a => a.Name == item.ToString()).Single();
+                    author.Books.Add(book);
+                }
                 context.Books.Add(book);
                 context.SaveChanges();
 
@@ -89,15 +98,15 @@ namespace Interface
                 foreach (DataGridViewRow row in book_data_grid.SelectedRows) // foreach datagridview selected rows values  
                 {
 
-                    int id;
-                    if (this.isIDAtZero)
-                    {
-                        id = Convert.ToInt32(row.Cells[0].Value);
-                    }
-                    else
-                    {
-                        id = Convert.ToInt32(row.Cells[1].Value);
-                    }
+                    int id = Convert.ToInt32(row.Cells[0].Value);
+                    //if (this.isIDAtZero)
+                    //{
+                    //    id = Convert.ToInt32(row.Cells[0].Value);
+                    //}
+                    //else
+                    //{
+                    //    id = Convert.ToInt32(row.Cells[1].Value);
+                    //}
                     Console.WriteLine("Book with id to delete");
                     Console.WriteLine(id);
                     using (LibraryContext context = new LibraryContext())
@@ -157,6 +166,26 @@ namespace Interface
             }
             this.Display();
 
+        }
+
+        private void delete_author_btn_Click(object sender, EventArgs e)
+        {
+            if (author_data_grid.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in author_data_grid.SelectedRows) // foreach datagridview selected rows values  
+                {
+
+                    var id = Convert.ToInt32(row.Cells[0].Value);
+                    
+                    using (LibraryContext context = new LibraryContext())
+                    {
+                        Author authorToDelete = context.Authors.Where(x => x.AuthorId == id).Select(x => x).FirstOrDefault();
+                        context.Entry(authorToDelete).State = System.Data.Entity.EntityState.Deleted;
+                        context.SaveChanges();
+                    }
+                    this.Display();
+                }
+            }
         }
     }
 }
