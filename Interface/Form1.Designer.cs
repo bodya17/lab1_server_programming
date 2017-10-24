@@ -42,6 +42,7 @@
             this.save_author_to_db_button = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.delete_author_btn = new System.Windows.Forms.Button();
+            this.open_file_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.book_data_grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.author_data_grid)).BeginInit();
             this.SuspendLayout();
@@ -174,11 +175,22 @@
             this.delete_author_btn.UseVisualStyleBackColor = true;
             this.delete_author_btn.Click += new System.EventHandler(this.delete_author_btn_Click);
             // 
+            // open_file_btn
+            // 
+            this.open_file_btn.Location = new System.Drawing.Point(721, 362);
+            this.open_file_btn.Name = "open_file_btn";
+            this.open_file_btn.Size = new System.Drawing.Size(75, 23);
+            this.open_file_btn.TabIndex = 16;
+            this.open_file_btn.Text = "Openfile";
+            this.open_file_btn.UseVisualStyleBackColor = true;
+            this.open_file_btn.Click += new System.EventHandler(this.open_file_btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 451);
+            this.Controls.Add(this.open_file_btn);
             this.Controls.Add(this.delete_author_btn);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.save_author_to_db_button);
@@ -219,6 +231,7 @@
         private System.Windows.Forms.Button save_author_to_db_button;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button delete_author_btn;
+        private System.Windows.Forms.Button open_file_btn;
     }
 }
 

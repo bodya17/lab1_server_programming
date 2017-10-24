@@ -9,15 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Interface.DataModel;
 using System.Data.Entity;
+using System.IO;
 
 namespace Interface
 {
-    public class A
-    {
-        public int BookId;
-        public string Title;
-        public string Authors;
-    }
     public partial class Form1 : Form
     {
         public Form1()
@@ -30,9 +25,54 @@ namespace Interface
 
         private bool isIDAtZero;
         private bool renderUpdateButtons;
-        private DataGridViewColumn authorColumn;
         private string SEPARATOR = " / ";
         // gets data from db and puts it into datagrid
+
+        private byte[] openFile()
+        {
+            Stream myStream = null;
+            OpenFileDialog theDialog = new OpenFileDialog();
+            theDialog.Title = "Open Text File";
+            theDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|All files (*.*)|*.*";
+            theDialog.InitialDirectory = @"C:\";
+            byte[] data = null;
+            if (theDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = theDialog.FileName;
+                FileInfo fileInfo = new FileInfo(path);
+
+                // The byte[] to save the data in
+                data = new byte[fileInfo.Length];
+
+                // Load a filestream and put its content into the byte[]
+                using (FileStream fs = fileInfo.OpenRead())
+                {
+                    fs.Read(data, 0, data.Length);
+                }
+
+                // Delete the temporary file
+                fileInfo.Delete();
+
+                //try
+                //{
+                //    if ((myStream = theDialog.OpenFile()) != null)
+                //    {
+                //        using (myStream)
+                //        {
+                //            // Insert code to read the stream here.
+                //        }
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                //}
+            }
+            Console.WriteLine(Convert.ToBase64String(data));
+            return data;
+        }
+
+
         public void Display()
         {
             using (LibraryContext context = new LibraryContext())
@@ -93,11 +133,12 @@ namespace Interface
 
         private void createNewBookInDb(object sender, EventArgs e)
         {
+            var imageData = this.openFile();
             using (LibraryContext context = new LibraryContext())
             {
                 Book book = new Book();
                 book.Title = this.textBox1.Text;
-
+                book.image = imageData;
 
                 foreach (var item in listBox1.SelectedItems)
                 {
@@ -207,6 +248,11 @@ namespace Interface
                     this.Display();
                 }
             }
+        }
+
+        private void open_file_btn_Click(object sender, EventArgs e)
+        {
+            this.openFile();
         }
     }
 }
