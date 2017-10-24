@@ -12,6 +12,12 @@ using System.Data.Entity;
 
 namespace Interface
 {
+    public class A
+    {
+        public int BookId;
+        public string Title;
+        public string Authors;
+    }
     public partial class Form1 : Form
     {
         public Form1()
@@ -24,25 +30,40 @@ namespace Interface
 
         private bool isIDAtZero;
         private bool renderUpdateButtons;
+        private DataGridViewColumn authorColumn;
+        private string SEPARATOR = " / ";
         // gets data from db and puts it into datagrid
         public void Display()
         {
             using (LibraryContext context = new LibraryContext())
             {
-                //var authorName = context.Books.Select(a => a.Authors.ToString).ToList();
                 var bookList = context.Books.Select(x => new {
                     BookId = x.BookId,
                     Title = x.Title,
-                //    Authors = x.Authors.Select(a => a.Name).ToString() 
-            }).ToList();
-                var authorList = context.Authors.Select(x => new { AuthorId = x.AuthorId, Name = x.Name}).ToList();
+                    Authors = x.Authors.Select(a => a.Name).ToList()
+                }).ToList().Select((x, index) => new {
+                    BookId = x.BookId,
+                    Title = x.Title,
+                    Authors = String.Join(this.SEPARATOR, x.Authors)
+                }).ToList();
+
+                var authorList = context.Authors.Select(x => new {
+                    AuthorId = x.AuthorId,
+                    Name = x.Name,
+                    Books = x.Books.Select(b => b.Title).ToList()
+                }).ToList().Select(x => new {
+                    AuthorId = x.AuthorId,
+                    Name = x.Name,
+                    Books = String.Join(this.SEPARATOR, x.Books)
+                }).ToList();
+
 
                 book_data_grid.DataSource = bookList;
                 author_data_grid.DataSource = authorList;
 
                 this.listBox1.SelectionMode = SelectionMode.MultiSimple;
 
-                this.listBox1.DataSource = context.Authors.Select(x => x.Name).ToList(); ;
+                this.listBox1.DataSource = context.Authors.Select(x => x.Name).ToList();
 
             }
 
