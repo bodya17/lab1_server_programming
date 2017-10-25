@@ -20,7 +20,6 @@ namespace Interface
             InitializeComponent();
             this.isIDAtZero = true;
             this.renderUpdateButtons = true;
-
         }
 
         private bool isIDAtZero;
@@ -41,7 +40,6 @@ namespace Interface
                 string path = theDialog.FileName;
                 FileInfo fileInfo = new FileInfo(path);
 
-                // The byte[] to save the data in
                 data = new byte[fileInfo.Length];
 
                 // Load a filestream and put its content into the byte[]
@@ -49,26 +47,7 @@ namespace Interface
                 {
                     fs.Read(data, 0, data.Length);
                 }
-
-                // Delete the temporary file
-                fileInfo.Delete();
-
-                //try
-                //{
-                //    if ((myStream = theDialog.OpenFile()) != null)
-                //    {
-                //        using (myStream)
-                //        {
-                //            // Insert code to read the stream here.
-                //        }
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                //}
             }
-            Console.WriteLine(Convert.ToBase64String(data));
             return data;
         }
 
@@ -81,7 +60,7 @@ namespace Interface
                     BookId = x.BookId,
                     Title = x.Title,
                     Authors = x.Authors.Select(a => a.Name).ToList()
-                }).ToList().Select((x, index) => new {
+                }).ToList().Select(x => new {
                     BookId = x.BookId,
                     Title = x.Title,
                     Authors = String.Join(this.SEPARATOR, x.Authors)
@@ -111,13 +90,13 @@ namespace Interface
             {
                 //dataGridView1.Columns[0].ReadOnly = true; // disable id editing
 
-                //var buttonCol = new DataGridViewButtonColumn();
-                //buttonCol.Name = "Update";
-                //buttonCol.HeaderText = "Update";
-                //buttonCol.Text = "Update";
-                //buttonCol.UseColumnTextForButtonValue = true;
+                var buttonCol = new DataGridViewButtonColumn();
+                buttonCol.Name = "ShowImage";
+                buttonCol.HeaderText = "Image";
+                buttonCol.Text = "Show image";
+                buttonCol.UseColumnTextForButtonValue = true;
 
-                //book_data_grid.Columns.Insert(2, buttonCol);
+                book_data_grid.Columns.Insert(3, buttonCol);
                 this.renderUpdateButtons = false;
             } else
             {
@@ -160,15 +139,15 @@ namespace Interface
                 foreach (DataGridViewRow row in book_data_grid.SelectedRows) // foreach datagridview selected rows values  
                 {
 
-                    int id = Convert.ToInt32(row.Cells[0].Value);
-                    //if (this.isIDAtZero)
-                    //{
-                    //    id = Convert.ToInt32(row.Cells[0].Value);
-                    //}
-                    //else
-                    //{
-                    //    id = Convert.ToInt32(row.Cells[1].Value);
-                    //}
+                    int id;
+                    if (this.isIDAtZero)
+                    {
+                        id = Convert.ToInt32(row.Cells[0].Value);
+                    }
+                    else
+                    {
+                        id = Convert.ToInt32(row.Cells[1].Value);
+                    }
                     Console.WriteLine("Book with id to delete");
                     Console.WriteLine(id);
                     using (LibraryContext context = new LibraryContext())
@@ -182,38 +161,70 @@ namespace Interface
             }
         }
 
-        private void updateData(object sender, DataGridViewCellEventArgs e)
+        private void showImage(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
 
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
             {
-                int i = this.isIDAtZero ? 0 : 1;
-                int id;
-                if (this.isIDAtZero)
+                using (Form form = new Form())
                 {
-                    id = Convert.ToInt32(this.book_data_grid.Rows[e.RowIndex].Cells[0].Value);
-                }
-                else
-                {
-                    id = Convert.ToInt32(this.book_data_grid.Rows[e.RowIndex].Cells[1].Value);
-                }
-                var BookTitle = this.book_data_grid.Rows[e.RowIndex].Cells[i + 1].Value.ToString();
-                //var AuthorName = this.dataGridView1.Rows[e.RowIndex].Cells[i + 2].Value.ToString();
-                
-                using (LibraryContext context = new LibraryContext())
-                {
-                    Book bookToUpdate = context.Books.Where(x => x.BookId == id).Select(x => x).FirstOrDefault();
-                    //bookToUpdate.Author = AuthorName;
-                    bookToUpdate.Title = BookTitle;
-                    context.Entry(bookToUpdate).State = System.Data.Entity.EntityState.Modified;
-                    context.SaveChanges();
-                }
+                    using (LibraryContext context = new LibraryContext())
+                    {
+                       
+                        Bitmap bmp;
+                        using (var ms = new MemoryStream(context.Books.ToList()[e.RowIndex].image))
+                        {
+                            bmp = new Bitmap(ms);
+                            form.StartPosition = FormStartPosition.CenterScreen;
+                            form.Size = bmp.Size;
 
+                            PictureBox pb = new PictureBox();
+                            pb.Dock = DockStyle.Fill;
+                            pb.Image = bmp;
+
+                            form.Controls.Add(pb);
+                            form.ShowDialog();
+                        }
+
+                    }
+
+                }
             }
 
         }
+        //private void updateData(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    var senderGrid = (DataGridView)sender;
+
+        //    if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+        //        e.RowIndex >= 0)
+        //    {
+        //        int i = this.isIDAtZero ? 0 : 1;
+        //        int id;
+        //        if (this.isIDAtZero)
+        //        {
+        //            id = Convert.ToInt32(this.book_data_grid.Rows[e.RowIndex].Cells[0].Value);
+        //        }
+        //        else
+        //        {
+        //            id = Convert.ToInt32(this.book_data_grid.Rows[e.RowIndex].Cells[1].Value);
+        //        }
+        //        var BookTitle = this.book_data_grid.Rows[e.RowIndex].Cells[i + 1].Value.ToString();
+        //        //var AuthorName = this.dataGridView1.Rows[e.RowIndex].Cells[i + 2].Value.ToString();
+                
+        //        using (LibraryContext context = new LibraryContext())
+        //        {
+        //            Book bookToUpdate = context.Books.Where(x => x.BookId == id).Select(x => x).FirstOrDefault();
+        //            //bookToUpdate.Author = AuthorName;
+        //            bookToUpdate.Title = BookTitle;
+        //            context.Entry(bookToUpdate).State = System.Data.Entity.EntityState.Modified;
+        //            context.SaveChanges();
+        //        }
+
+        //    }
+
+        //}
 
         private void saveAuthorToDB(object sender, EventArgs e)
         {
@@ -226,6 +237,7 @@ namespace Interface
                 context.Authors.Add(author);
                 context.SaveChanges();
             }
+            author_name_text_box.Text = "";
             this.Display();
 
         }

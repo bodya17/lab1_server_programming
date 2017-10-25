@@ -90,7 +90,7 @@
             this.book_data_grid.Name = "book_data_grid";
             this.book_data_grid.Size = new System.Drawing.Size(436, 150);
             this.book_data_grid.TabIndex = 5;
-            this.book_data_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.updateData);
+            this.book_data_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.showImage);
             // 
             // button2
             // 
