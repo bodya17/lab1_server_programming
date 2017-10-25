@@ -80,9 +80,9 @@ namespace Interface
                 book_data_grid.DataSource = bookList;
                 author_data_grid.DataSource = authorList;
 
-                this.listBox1.SelectionMode = SelectionMode.MultiSimple;
+                this.authors_list.SelectionMode = SelectionMode.MultiSimple;
 
-                this.listBox1.DataSource = context.Authors.Select(x => x.Name).ToList();
+                this.authors_list.DataSource = context.Authors.Select(x => x.Name).ToList();
 
             }
 
@@ -116,10 +116,10 @@ namespace Interface
             using (LibraryContext context = new LibraryContext())
             {
                 Book book = new Book();
-                book.Title = this.textBox1.Text;
+                book.Title = this.book_name_text_box.Text;
                 book.image = imageData;
 
-                foreach (var item in listBox1.SelectedItems)
+                foreach (var item in authors_list.SelectedItems)
                 {
                     Author author = context.Authors.Where(a => a.Name == item.ToString()).Single();
                     author.Books.Add(book);
@@ -265,6 +265,118 @@ namespace Interface
         private void open_file_btn_Click(object sender, EventArgs e)
         {
             this.openFile();
+        }
+
+        private void edit_book_btn_Click()
+        {
+            Console.WriteLine(book_data_grid.CurrentCell.RowIndex);
+            //if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+            //    e.RowIndex >= 0)
+            //{
+            //    int i = this.isIDAtZero ? 0 : 1;
+            //    int id;
+            //    if (this.isIDAtZero)
+            //    {
+            //        id = Convert.ToInt32(this.book_data_grid.Rows[e.RowIndex].Cells[0].Value);
+            //    }
+            //    else
+            //    {
+            //        id = Convert.ToInt32(this.book_data_grid.Rows[e.RowIndex].Cells[1].Value);
+            //    }
+            //    var BookTitle = this.book_data_grid.Rows[e.RowIndex].Cells[i + 1].Value.ToString();
+            //    //var AuthorName = this.dataGridView1.Rows[e.RowIndex].Cells[i + 2].Value.ToString();
+
+            //    using (LibraryContext context = new LibraryContext())
+            //    {
+            //        Book bookToUpdate = context.Books.Where(x => x.BookId == id).Select(x => x).FirstOrDefault();
+            //        //bookToUpdate.Author = AuthorName;
+            //        bookToUpdate.Title = BookTitle;
+            //        context.Entry(bookToUpdate).State = System.Data.Entity.EntityState.Modified;
+            //        context.SaveChanges();
+            //    }
+
+            //}
+        }
+
+
+        private void edit_book_btn_Click(object sender, EventArgs e)
+        {
+            var rowIndex = book_data_grid.CurrentCell.RowIndex;
+
+            int bookId;
+            int i = this.isIDAtZero ? 0 : 1;
+            if (this.isIDAtZero)
+            {
+                bookId = Convert.ToInt32(book_data_grid.Rows[rowIndex].Cells[0].Value);
+            }
+            else
+            {
+                bookId = Convert.ToInt32(book_data_grid.Rows[rowIndex].Cells[1].Value);
+            }
+
+            var bookTitle = book_data_grid.Rows[rowIndex].Cells[i+1].Value.ToString();
+            var authors = book_data_grid.Rows[rowIndex].Cells[i+2].Value.ToString();
+
+            using (Form form = new Form())
+            {
+
+                form.StartPosition = FormStartPosition.CenterScreen;
+                form.Size = new Size(600, 400);
+
+                TextBox title_text_box = new TextBox();
+                title_text_box.Text = bookTitle;
+                title_text_box.Location = new System.Drawing.Point(200, 50);
+
+                Label title = new Label();
+                title.Text = "Title: ";
+                title.Location = new System.Drawing.Point(100, 50);
+
+                Label authorsLabel = new Label();
+                authorsLabel.Text = "Authors: ";
+                authorsLabel.Location = new System.Drawing.Point(100, 100);
+
+                ListBox authors_list = new ListBox();
+                authors_list.SelectionMode = SelectionMode.MultiSimple;
+                authors_list.Location = new System.Drawing.Point(200, 100);
+
+                using (LibraryContext context = new LibraryContext())
+                {
+                    authors_list.DataSource = context.Authors.Select(x => x.Name).ToList();
+                }
+
+                // two button (save changes and discard changes)
+                Button saveBtn = new Button();
+                saveBtn.Text = "Save changes";
+                saveBtn.Location = new Point(200, 250);
+                saveBtn.Click += new EventHandler(delegate (object s, EventArgs args) {
+                    using (LibraryContext context = new LibraryContext())
+                    {
+                        Book bookToUpdate = context.Books.Where(x => x.BookId == bookId).Select(x => x).FirstOrDefault();
+                        bookToUpdate.Title = title_text_box.Text;
+                        context.SaveChanges();
+                    }
+                    this.Display();
+                    form.Close();
+                    Console.WriteLine("Save");
+                });
+
+                Button discardBtn = new Button();
+                discardBtn.Text = "Discard changes";
+                discardBtn.Location = new Point(300, 250);
+                discardBtn.Click += new EventHandler(delegate (object s, EventArgs args) {
+                    form.Close();
+                });
+
+                form.Controls.Add(title);
+                form.Controls.Add(authorsLabel);
+                form.Controls.Add(title_text_box);
+                form.Controls.Add(authors_list);
+                form.Controls.Add(saveBtn);
+                form.Controls.Add(discardBtn);
+
+                form.ShowDialog();
+                    
+            }
         }
     }
 }
