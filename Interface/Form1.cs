@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Interface
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MetroFramework.Forms.MetroForm
     {
         public Form1()
         {
@@ -376,6 +376,14 @@ namespace Interface
 
                 form.ShowDialog();
                     
+            }
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            using (addForm form = new addForm())
+            {
+                form.ShowDialog();
             }
         }
     }
