@@ -44,7 +44,6 @@
             this.delete_author_btn = new System.Windows.Forms.Button();
             this.open_file_btn = new System.Windows.Forms.Button();
             this.edit_book_btn = new System.Windows.Forms.Button();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.book_data_grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.author_data_grid)).BeginInit();
             this.SuspendLayout();
@@ -197,21 +196,11 @@
             this.edit_book_btn.UseVisualStyleBackColor = true;
             this.edit_book_btn.Click += new System.EventHandler(this.edit_book_btn_Click);
             // 
-            // metroButton1
-            // 
-            this.metroButton1.Location = new System.Drawing.Point(137, 341);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(75, 23);
-            this.metroButton1.TabIndex = 18;
-            this.metroButton1.Text = "Edit";
-            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 451);
-            this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.edit_book_btn);
             this.Controls.Add(this.open_file_btn);
             this.Controls.Add(this.delete_author_btn);
@@ -256,7 +245,6 @@
         private System.Windows.Forms.Button delete_author_btn;
         private System.Windows.Forms.Button open_file_btn;
         private System.Windows.Forms.Button edit_book_btn;
-        private MetroFramework.Controls.MetroButton metroButton1;
     }
 }
 

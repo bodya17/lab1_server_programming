@@ -353,6 +353,27 @@ namespace Interface
                     {
                         Book bookToUpdate = context.Books.Where(x => x.BookId == bookId).Select(x => x).FirstOrDefault();
                         bookToUpdate.Title = title_text_box.Text;
+                        //book.image = imageData;
+                        bookToUpdate.Authors.Clear();
+                        //List<Author> updatedAuthorsList = new List<Author>();
+                        foreach (var item in authors_list.SelectedItems)
+                        {
+                            Author author = context.Authors.Where(a => a.Name == item.ToString()).Single();
+                            bookToUpdate.Authors.Add(author);
+                            //updatedAuthorsList.Add(author);
+                            //var selectedAuthors = context.Authors.Where(a => a.Name == item.ToString()).ToList();
+
+                          //  if (author.Books.Where(b => b.BookId == bookToUpdate.BookId).Count() == 0)
+                           // {
+                             //   author.Books.Add(bookToUpdate);
+                            //}
+                            
+                            //author.Books.Add(book);
+                            // if i
+                        }
+                        //bookToUpdate.Authors = updatedAuthorsList;
+                       // context.Books.Add(book);
+                        //context.SaveChanges();
                         context.SaveChanges();
                     }
                     this.Display();
