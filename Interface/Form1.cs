@@ -33,7 +33,7 @@ namespace Interface
         {
             Stream myStream = null;
             OpenFileDialog theDialog = new OpenFileDialog();
-            theDialog.Title = "Open Text File";
+            theDialog.Title = "Select Image for book";
             theDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|All files (*.*)|*.*";
             theDialog.InitialDirectory = @"C:\";
             byte[] data = null;
@@ -98,7 +98,8 @@ namespace Interface
                 buttonCol.Text = "Show image";
                 buttonCol.UseColumnTextForButtonValue = true;
 
-                book_data_grid.Columns.Insert(3, buttonCol);
+                //book_data_grid.Columns.Insert(3, buttonCol);
+                book_data_grid.Columns.Add(buttonCol);
                 this.renderUpdateButtons = false;
             } else
             {
@@ -133,7 +134,6 @@ namespace Interface
             this.Display();
         }
 
-        // Delete button pressed
         private void deleteFromDb(object sender, EventArgs e)
         {
             if (book_data_grid.Rows.Count > 0)
@@ -150,8 +150,6 @@ namespace Interface
                     {
                         id = Convert.ToInt32(row.Cells[1].Value);
                     }
-                    Console.WriteLine("Book with id to delete");
-                    Console.WriteLine(id);
                     using (LibraryContext context = new LibraryContext())
                     {
                         Book bookToDelete = context.Books.Where(x => x.BookId == id).Select(x => x).FirstOrDefault();
@@ -256,7 +254,7 @@ namespace Interface
                     using (LibraryContext context = new LibraryContext())
                     {
                         Author authorToDelete = context.Authors.Where(x => x.AuthorId == id).Select(x => x).FirstOrDefault();
-                        context.Entry(authorToDelete).State = System.Data.Entity.EntityState.Deleted;
+                        context.Entry(authorToDelete).State = EntityState.Deleted;
                         context.SaveChanges();
                     }
                     this.Display();
