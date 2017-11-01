@@ -42,7 +42,6 @@
             this.save_author_to_db_button = new System.Windows.Forms.Button();
             this.authors_list = new System.Windows.Forms.ListBox();
             this.delete_author_btn = new System.Windows.Forms.Button();
-            this.open_file_btn = new System.Windows.Forms.Button();
             this.edit_book_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.book_data_grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.author_data_grid)).BeginInit();
@@ -77,9 +76,10 @@
             // book_author_label
             // 
             this.book_author_label.AutoSize = true;
+            this.book_author_label.Font = new System.Drawing.Font("Trebuchet MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.book_author_label.Location = new System.Drawing.Point(262, 51);
             this.book_author_label.Name = "book_author_label";
-            this.book_author_label.Size = new System.Drawing.Size(38, 13);
+            this.book_author_label.Size = new System.Drawing.Size(42, 16);
             this.book_author_label.TabIndex = 4;
             this.book_author_label.Text = "Author";
             // 
@@ -176,16 +176,6 @@
             this.delete_author_btn.UseVisualStyleBackColor = true;
             this.delete_author_btn.Click += new System.EventHandler(this.delete_author_btn_Click);
             // 
-            // open_file_btn
-            // 
-            this.open_file_btn.Location = new System.Drawing.Point(721, 362);
-            this.open_file_btn.Name = "open_file_btn";
-            this.open_file_btn.Size = new System.Drawing.Size(75, 23);
-            this.open_file_btn.TabIndex = 16;
-            this.open_file_btn.Text = "Openfile";
-            this.open_file_btn.UseVisualStyleBackColor = true;
-            this.open_file_btn.Click += new System.EventHandler(this.open_file_btn_Click);
-            // 
             // edit_book_btn
             // 
             this.edit_book_btn.Location = new System.Drawing.Point(225, 341);
@@ -202,7 +192,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 451);
             this.Controls.Add(this.edit_book_btn);
-            this.Controls.Add(this.open_file_btn);
             this.Controls.Add(this.delete_author_btn);
             this.Controls.Add(this.authors_list);
             this.Controls.Add(this.save_author_to_db_button);
@@ -218,7 +207,6 @@
             this.Controls.Add(this.book_name_text_box);
             this.Controls.Add(this.save_book_to_db_btn);
             this.Name = "Form1";
-            this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.book_data_grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.author_data_grid)).EndInit();
@@ -243,7 +231,6 @@
         private System.Windows.Forms.Button save_author_to_db_button;
         private System.Windows.Forms.ListBox authors_list;
         private System.Windows.Forms.Button delete_author_btn;
-        private System.Windows.Forms.Button open_file_btn;
         private System.Windows.Forms.Button edit_book_btn;
     }
 }

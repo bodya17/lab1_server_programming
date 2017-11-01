@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Interface.DataModel;
 using System.Data.Entity;
 using System.IO;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace Interface
 {
@@ -299,8 +301,36 @@ namespace Interface
         }
 
 
+        // https://stackoverflow.com/questions/1922040/resize-an-image-c-sharp
+        public static Bitmap ResizeImage(Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
+        }
+
         private void edit_book_btn_Click(object sender, EventArgs e)
         {
+            const int IMAGE_HEIGHT = 100;
+            const int IMAGE_WIDTH = 100;
             var rowIndex = book_data_grid.CurrentCell.RowIndex;
 
             int bookId;
@@ -316,64 +346,65 @@ namespace Interface
 
             var bookTitle = book_data_grid.Rows[rowIndex].Cells[i+1].Value.ToString();
             var authors = book_data_grid.Rows[rowIndex].Cells[i+2].Value.ToString();
+            byte[] booksImage = null;
 
             using (Form form = new Form())
             {
-
+                form.Text = "Book editor";
                 form.StartPosition = FormStartPosition.CenterScreen;
-                form.Size = new Size(600, 400);
+                form.Size = new Size(600, 450);
 
                 TextBox title_text_box = new TextBox();
                 title_text_box.Text = bookTitle;
-                title_text_box.Location = new System.Drawing.Point(200, 50);
+                title_text_box.Location = new Point(200, 50);
 
                 Label title = new Label();
                 title.Text = "Title: ";
-                title.Location = new System.Drawing.Point(100, 50);
+                title.Location = new Point(100, 50);
 
                 Label authorsLabel = new Label();
                 authorsLabel.Text = "Authors: ";
-                authorsLabel.Location = new System.Drawing.Point(100, 100);
+                authorsLabel.Location = new Point(100, 100);
 
                 ListBox authors_list = new ListBox();
                 authors_list.SelectionMode = SelectionMode.MultiSimple;
-                authors_list.Location = new System.Drawing.Point(200, 100);
+                authors_list.Location = new Point(200, 100);
 
+                PictureBox pb = new PictureBox();
                 using (LibraryContext context = new LibraryContext())
                 {
+                    Bitmap bmp;
+                    using (var ms = new MemoryStream(context.Books.Where(book => book.BookId == bookId).First().image))
+                    {
+                        bmp = new Bitmap(ms);   
+                        pb.Location = new Point(200, 200);
+                        pb.Image = ResizeImage(bmp, IMAGE_WIDTH, IMAGE_HEIGHT);
+                    }
+                    
                     authors_list.DataSource = context.Authors.Select(x => x.Name).ToList();
                 }
-
-                // two button (save changes and discard changes)
+                //authors_list.SelectedIndex = -1;
+  
                 Button saveBtn = new Button();
                 saveBtn.Text = "Save changes";
-                saveBtn.Location = new Point(200, 250);
+                saveBtn.Location = new Point(200, 330);
                 saveBtn.Click += new EventHandler(delegate (object s, EventArgs args) {
                     using (LibraryContext context = new LibraryContext())
                     {
                         Book bookToUpdate = context.Books.Where(x => x.BookId == bookId).Select(x => x).FirstOrDefault();
                         bookToUpdate.Title = title_text_box.Text;
-                        //book.image = imageData;
+                        
                         bookToUpdate.Authors.Clear();
-                        //List<Author> updatedAuthorsList = new List<Author>();
+                       
                         foreach (var item in authors_list.SelectedItems)
                         {
                             Author author = context.Authors.Where(a => a.Name == item.ToString()).Single();
                             bookToUpdate.Authors.Add(author);
-                            //updatedAuthorsList.Add(author);
-                            //var selectedAuthors = context.Authors.Where(a => a.Name == item.ToString()).ToList();
-
-                          //  if (author.Books.Where(b => b.BookId == bookToUpdate.BookId).Count() == 0)
-                           // {
-                             //   author.Books.Add(bookToUpdate);
-                            //}
-                            
-                            //author.Books.Add(book);
-                            // if i
                         }
-                        //bookToUpdate.Authors = updatedAuthorsList;
-                       // context.Books.Add(book);
-                        //context.SaveChanges();
+                        if (booksImage != null) {
+                            bookToUpdate.image = booksImage;
+                        }
+                            
                         context.SaveChanges();
                     }
                     this.Display();
@@ -381,9 +412,23 @@ namespace Interface
                     Console.WriteLine("Save");
                 });
 
+                Button changeImageBtn = new Button();
+                changeImageBtn.Text = "Change Image";
+                changeImageBtn.Location = new Point(320, 250);
+                changeImageBtn.Click += new EventHandler(delegate (object s, EventArgs args) {
+                    //form.Close();
+                    
+                    booksImage = openFile();
+                    
+                    using (var ms = new MemoryStream(booksImage))
+                    {
+                        pb.Image = ResizeImage(Image.FromStream(ms), IMAGE_WIDTH, IMAGE_HEIGHT);
+                    }
+                });
+
                 Button discardBtn = new Button();
                 discardBtn.Text = "Discard changes";
-                discardBtn.Location = new Point(300, 250);
+                discardBtn.Location = new Point(300, 330);
                 discardBtn.Click += new EventHandler(delegate (object s, EventArgs args) {
                     form.Close();
                 });
@@ -394,7 +439,8 @@ namespace Interface
                 form.Controls.Add(authors_list);
                 form.Controls.Add(saveBtn);
                 form.Controls.Add(discardBtn);
-
+                form.Controls.Add(pb);
+                form.Controls.Add(changeImageBtn);
                 form.ShowDialog();
                     
             }
