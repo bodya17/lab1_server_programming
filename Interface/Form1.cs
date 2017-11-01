@@ -376,7 +376,8 @@ namespace Interface
                     Bitmap bmp;
                     using (var ms = new MemoryStream(context.Books.Where(book => book.BookId == bookId).First().image))
                     {
-                        bmp = new Bitmap(ms);   
+                        bmp = new Bitmap(ms);
+                        pb.Size = new Size(IMAGE_WIDTH, IMAGE_HEIGHT);
                         pb.Location = new Point(200, 200);
                         pb.Image = ResizeImage(bmp, IMAGE_WIDTH, IMAGE_HEIGHT);
                     }
