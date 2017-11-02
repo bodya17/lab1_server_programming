@@ -156,8 +156,9 @@ namespace Interface
                         context.Entry(bookToDelete).State = System.Data.Entity.EntityState.Deleted;
                         context.SaveChanges();
                     }
-                    this.Display();
+                    
                 }
+                this.Display();
             }
         }
 
@@ -257,8 +258,8 @@ namespace Interface
                         context.Entry(authorToDelete).State = EntityState.Deleted;
                         context.SaveChanges();
                     }
-                    this.Display();
                 }
+                this.Display();
             }
         }
 
@@ -346,7 +347,7 @@ namespace Interface
             var authors = book_data_grid.Rows[rowIndex].Cells[i+2].Value.ToString();
             byte[] booksImage = null;
 
-            using (Form form = new Form())
+            using (var form = new MetroFramework.Forms.MetroForm())
             {
                 form.Text = "Book editor";
                 form.StartPosition = FormStartPosition.CenterScreen;
@@ -452,5 +453,6 @@ namespace Interface
                 form.ShowDialog();
             }
         }
+
     }
 }
