@@ -62,7 +62,6 @@
             // save_book_to_db_btn
             // 
             this.save_book_to_db_btn.Location = new System.Drawing.Point(218, 336);
-
             this.save_book_to_db_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.save_book_to_db_btn.Name = "save_book_to_db_btn";
             this.save_book_to_db_btn.Size = new System.Drawing.Size(112, 35);
@@ -167,7 +166,6 @@
             // 
             // delete_author_btn
             // 
-
             this.delete_author_btn.Location = new System.Drawing.Point(343, 336);
             this.delete_author_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.delete_author_btn.Name = "delete_author_btn";
@@ -179,7 +177,6 @@
             // 
             // edit_book_btn
             // 
-
             this.edit_book_btn.Location = new System.Drawing.Point(21, 336);
             this.edit_book_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edit_book_btn.Name = "edit_book_btn";
@@ -193,7 +190,6 @@
             // 
             this.book_data_grid.AllowUserToResizeRows = false;
             this.book_data_grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-
             this.book_data_grid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.book_data_grid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.book_data_grid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
@@ -217,10 +213,8 @@
             this.book_data_grid.DefaultCellStyle = dataGridViewCellStyle2;
             this.book_data_grid.EnableHeadersVisualStyles = false;
             this.book_data_grid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-
             this.book_data_grid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.book_data_grid.Location = new System.Drawing.Point(21, 182);
-
             this.book_data_grid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.book_data_grid.Name = "book_data_grid";
             this.book_data_grid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -234,9 +228,7 @@
             this.book_data_grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.book_data_grid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.book_data_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-
-            this.book_data_grid.Size = new System.Drawing.Size(510, 133);
-
+            this.book_data_grid.Size = new System.Drawing.Size(541, 133);
             this.book_data_grid.TabIndex = 18;
             this.book_data_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.showImage);
             // 
@@ -268,9 +260,7 @@
             this.author_data_grid.EnableHeadersVisualStyles = false;
             this.author_data_grid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.author_data_grid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-
             this.author_data_grid.Location = new System.Drawing.Point(21, 128);
-
             this.author_data_grid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.author_data_grid.Name = "author_data_grid";
             this.author_data_grid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -284,10 +274,7 @@
             this.author_data_grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.author_data_grid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.author_data_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-
             this.author_data_grid.Size = new System.Drawing.Size(463, 156);
-
-
             this.author_data_grid.TabIndex = 19;
             // 
             // book_name_text_box
@@ -299,9 +286,7 @@
             // 
             // edit_author_btn
             // 
-
             this.edit_author_btn.Location = new System.Drawing.Point(194, 336);
-
             this.edit_author_btn.Name = "edit_author_btn";
             this.edit_author_btn.Size = new System.Drawing.Size(97, 35);
             this.edit_author_btn.TabIndex = 21;
