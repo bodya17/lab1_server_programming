@@ -69,6 +69,12 @@
     <Compile Include="addForm.Designer.cs">
       <DependentUpon>addForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuthorEditForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AuthorEditForm.Designer.cs">
+      <DependentUpon>AuthorEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataModel\Book.cs" />
     <Compile Include="DataModel\Author.cs" />
     <Compile Include="DataModel\LibraryContext.cs" />
@@ -82,6 +88,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="addForm.resx">
       <DependentUpon>addForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuthorEditForm.resx">
+      <DependentUpon>AuthorEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -49,6 +49,7 @@
             this.book_data_grid = new MetroFramework.Controls.MetroGrid();
             this.author_data_grid = new MetroFramework.Controls.MetroGrid();
             this.book_name_text_box = new System.Windows.Forms.TextBox();
+            this.edit_author_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.book_data_grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.author_data_grid)).BeginInit();
             this.SuspendLayout();
@@ -158,7 +159,7 @@
             // 
             // delete_author_btn
             // 
-            this.delete_author_btn.Location = new System.Drawing.Point(975, 525);
+            this.delete_author_btn.Location = new System.Drawing.Point(1118, 525);
             this.delete_author_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.delete_author_btn.Name = "delete_author_btn";
             this.delete_author_btn.Size = new System.Drawing.Size(141, 35);
@@ -274,11 +275,22 @@
             this.book_name_text_box.Size = new System.Drawing.Size(123, 26);
             this.book_name_text_box.TabIndex = 20;
             // 
+            // edit_author_btn
+            // 
+            this.edit_author_btn.Location = new System.Drawing.Point(990, 525);
+            this.edit_author_btn.Name = "edit_author_btn";
+            this.edit_author_btn.Size = new System.Drawing.Size(97, 35);
+            this.edit_author_btn.TabIndex = 21;
+            this.edit_author_btn.Text = "Edit Author";
+            this.edit_author_btn.UseVisualStyleBackColor = true;
+            this.edit_author_btn.Click += new System.EventHandler(this.edit_author_btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1378, 694);
+            this.Controls.Add(this.edit_author_btn);
             this.Controls.Add(this.book_name_text_box);
             this.Controls.Add(this.author_data_grid);
             this.Controls.Add(this.book_data_grid);
@@ -323,6 +335,7 @@
         private MetroFramework.Controls.MetroGrid book_data_grid;
         private MetroFramework.Controls.MetroGrid author_data_grid;
         private System.Windows.Forms.TextBox book_name_text_box;
+        private System.Windows.Forms.Button edit_author_btn;
     }
 }
 

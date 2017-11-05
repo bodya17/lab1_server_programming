@@ -90,20 +90,15 @@ namespace Interface
 
             if (this.renderUpdateButtons)
             {
-                //dataGridView1.Columns[0].ReadOnly = true; // disable id editing
-
                 var buttonCol = new DataGridViewButtonColumn();
                 buttonCol.Name = "ShowImage";
                 buttonCol.HeaderText = "Image";
                 buttonCol.Text = "Show image";
                 buttonCol.UseColumnTextForButtonValue = true;
-
-                //book_data_grid.Columns.Insert(3, buttonCol);
                 book_data_grid.Columns.Add(buttonCol);
                 this.renderUpdateButtons = false;
             } else
             {
-                //dataGridView1.Columns[1].ReadOnly = true; // disable id editing
                 isIDAtZero = false;
             }
         }
@@ -194,38 +189,6 @@ namespace Interface
             }
 
         }
-        //private void updateData(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    var senderGrid = (DataGridView)sender;
-
-        //    if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-        //        e.RowIndex >= 0)
-        //    {
-        //        int i = this.isIDAtZero ? 0 : 1;
-        //        int id;
-        //        if (this.isIDAtZero)
-        //        {
-        //            id = Convert.ToInt32(this.book_data_grid.Rows[e.RowIndex].Cells[0].Value);
-        //        }
-        //        else
-        //        {
-        //            id = Convert.ToInt32(this.book_data_grid.Rows[e.RowIndex].Cells[1].Value);
-        //        }
-        //        var BookTitle = this.book_data_grid.Rows[e.RowIndex].Cells[i + 1].Value.ToString();
-        //        //var AuthorName = this.dataGridView1.Rows[e.RowIndex].Cells[i + 2].Value.ToString();
-                
-        //        using (LibraryContext context = new LibraryContext())
-        //        {
-        //            Book bookToUpdate = context.Books.Where(x => x.BookId == id).Select(x => x).FirstOrDefault();
-        //            //bookToUpdate.Author = AuthorName;
-        //            bookToUpdate.Title = BookTitle;
-        //            context.Entry(bookToUpdate).State = System.Data.Entity.EntityState.Modified;
-        //            context.SaveChanges();
-        //        }
-
-        //    }
-
-        //}
 
         private void saveAuthorToDB(object sender, EventArgs e)
         {
@@ -268,38 +231,6 @@ namespace Interface
             this.openFile();
         }
 
-        private void edit_book_btn_Click()
-        {
-            Console.WriteLine(book_data_grid.CurrentCell.RowIndex);
-            //if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-            //    e.RowIndex >= 0)
-            //{
-            //    int i = this.isIDAtZero ? 0 : 1;
-            //    int id;
-            //    if (this.isIDAtZero)
-            //    {
-            //        id = Convert.ToInt32(this.book_data_grid.Rows[e.RowIndex].Cells[0].Value);
-            //    }
-            //    else
-            //    {
-            //        id = Convert.ToInt32(this.book_data_grid.Rows[e.RowIndex].Cells[1].Value);
-            //    }
-            //    var BookTitle = this.book_data_grid.Rows[e.RowIndex].Cells[i + 1].Value.ToString();
-            //    //var AuthorName = this.dataGridView1.Rows[e.RowIndex].Cells[i + 2].Value.ToString();
-
-            //    using (LibraryContext context = new LibraryContext())
-            //    {
-            //        Book bookToUpdate = context.Books.Where(x => x.BookId == id).Select(x => x).FirstOrDefault();
-            //        //bookToUpdate.Author = AuthorName;
-            //        bookToUpdate.Title = BookTitle;
-            //        context.Entry(bookToUpdate).State = System.Data.Entity.EntityState.Modified;
-            //        context.SaveChanges();
-            //    }
-
-            //}
-        }
-
-
         // https://stackoverflow.com/questions/1922040/resize-an-image-c-sharp
         public static Bitmap ResizeImage(Image image, int width, int height)
         {
@@ -338,8 +269,10 @@ namespace Interface
             {
                 bookId = Convert.ToInt32(book_data_grid.Rows[rowIndex].Cells[0].Value);
             }
+
             else
             {
+               
                 bookId = Convert.ToInt32(book_data_grid.Rows[rowIndex].Cells[1].Value);
             }
 
@@ -454,5 +387,17 @@ namespace Interface
             }
         }
 
+        private void edit_author_btn_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Editing author");
+            var editAuthorForm = new AuthorEditForm();
+            using (var form = new MetroFramework.Forms.MetroForm())
+            {
+                form.Size = new Size(600, 400);
+                form.Controls.Add(editAuthorForm);
+                form.ShowDialog();
+            }
+                
+        }
     }
 }
