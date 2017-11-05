@@ -352,11 +352,13 @@ namespace Interface
                     //form.Close();
                     
                     booksImage = openFile();
-                    
-                    using (var ms = new MemoryStream(booksImage))
-                    {
-                        pb.Image = ResizeImage(Image.FromStream(ms), IMAGE_WIDTH, IMAGE_HEIGHT);
+                    if (booksImage != null) {
+                        using (var ms = new MemoryStream(booksImage))
+                        {
+                            pb.Image = ResizeImage(Image.FromStream(ms), IMAGE_WIDTH, IMAGE_HEIGHT);
+                        }
                     }
+                    
                 });
 
                 Button discardBtn = new Button();
