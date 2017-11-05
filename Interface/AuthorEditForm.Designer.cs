@@ -30,7 +30,7 @@
         {
             this.save_author_btn = new System.Windows.Forms.Button();
             this.name_label = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.author_name = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // save_author_btn
@@ -53,18 +53,18 @@
             this.name_label.TabIndex = 1;
             this.name_label.Text = "Name";
             // 
-            // textBox1
+            // author_name
             // 
-            this.textBox1.Location = new System.Drawing.Point(110, 38);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.author_name.Location = new System.Drawing.Point(110, 38);
+            this.author_name.Name = "author_name";
+            this.author_name.Size = new System.Drawing.Size(100, 20);
+            this.author_name.TabIndex = 2;
             // 
             // AuthorEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.author_name);
             this.Controls.Add(this.name_label);
             this.Controls.Add(this.save_author_btn);
             this.Location = new System.Drawing.Point(20, 20);
@@ -80,6 +80,6 @@
 
         private System.Windows.Forms.Button save_author_btn;
         private System.Windows.Forms.Label name_label;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox author_name;
     }
 }

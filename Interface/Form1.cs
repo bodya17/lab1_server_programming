@@ -391,12 +391,26 @@ namespace Interface
 
         private void edit_author_btn_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Editing author");
-            var editAuthorForm = new AuthorEditForm();
+ 
+            var editAuthorForm = new AuthorEditForm("name");
             using (var form = new MetroFramework.Forms.MetroForm())
             {
+                editAuthorForm.Controls["author_name"].Text = author_data_grid.SelectedRows[0].Cells[1].Value.ToString();
+                
                 form.Size = new Size(600, 400);
                 form.Controls.Add(editAuthorForm);
+                form.Controls[0].Controls["save_author_btn"].Click += new EventHandler(delegate (object s, EventArgs args)
+                {
+                    using (LibraryContext context = new LibraryContext())
+                    {
+                        var authorId = Convert.ToInt32(author_data_grid.SelectedRows[0].Cells[0].Value);
+                        Author authorToUpdate = context.Authors.Where(x => x.AuthorId == authorId).Select(x => x).FirstOrDefault();
+                        authorToUpdate.Name = form.Controls[0].Controls["author_name"].Text;
+                        context.SaveChanges();
+                    }
+
+                    form.Close();
+                });
                 form.ShowDialog();
             }
                 
