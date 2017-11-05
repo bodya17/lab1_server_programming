@@ -408,8 +408,9 @@ namespace Interface
                         authorToUpdate.Name = form.Controls[0].Controls["author_name"].Text;
                         context.SaveChanges();
                     }
-
+                    this.Display();
                     form.Close();
+
                 });
                 form.ShowDialog();
             }
