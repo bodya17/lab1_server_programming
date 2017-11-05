@@ -61,7 +61,7 @@
             // 
             // save_book_to_db_btn
             // 
-            this.save_book_to_db_btn.Location = new System.Drawing.Point(247, 335);
+            this.save_book_to_db_btn.Location = new System.Drawing.Point(232, 336);
             this.save_book_to_db_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.save_book_to_db_btn.Name = "save_book_to_db_btn";
             this.save_book_to_db_btn.Size = new System.Drawing.Size(112, 35);
@@ -73,7 +73,7 @@
             // book_name_label
             // 
             this.book_name_label.AutoSize = true;
-            this.book_name_label.Location = new System.Drawing.Point(17, 69);
+            this.book_name_label.Location = new System.Drawing.Point(48, 78);
             this.book_name_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.book_name_label.Name = "book_name_label";
             this.book_name_label.Size = new System.Drawing.Size(35, 20);
@@ -83,7 +83,7 @@
             // book_author_label
             // 
             this.book_author_label.AutoSize = true;
-            this.book_author_label.Location = new System.Drawing.Point(286, 69);
+            this.book_author_label.Location = new System.Drawing.Point(301, 81);
             this.book_author_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.book_author_label.Name = "book_author_label";
             this.book_author_label.Size = new System.Drawing.Size(58, 20);
@@ -127,7 +127,7 @@
             // 
             // author_name_text_box
             // 
-            this.author_name_text_box.Location = new System.Drawing.Point(233, 72);
+            this.author_name_text_box.Location = new System.Drawing.Point(266, 72);
             this.author_name_text_box.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.author_name_text_box.Name = "author_name_text_box";
             this.author_name_text_box.Size = new System.Drawing.Size(148, 26);
@@ -136,7 +136,7 @@
             // author_label
             // 
             this.author_label.AutoSize = true;
-            this.author_label.Location = new System.Drawing.Point(66, 75);
+            this.author_label.Location = new System.Drawing.Point(84, 75);
             this.author_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.author_label.Name = "author_label";
             this.author_label.Size = new System.Drawing.Size(104, 20);
@@ -145,7 +145,7 @@
             // 
             // save_author_to_db_button
             // 
-            this.save_author_to_db_button.Location = new System.Drawing.Point(33, 336);
+            this.save_author_to_db_button.Location = new System.Drawing.Point(21, 337);
             this.save_author_to_db_button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.save_author_to_db_button.Name = "save_author_to_db_button";
             this.save_author_to_db_button.Size = new System.Drawing.Size(112, 35);
@@ -158,7 +158,7 @@
             // 
             this.authors_list.FormattingEnabled = true;
             this.authors_list.ItemHeight = 20;
-            this.authors_list.Location = new System.Drawing.Point(384, 38);
+            this.authors_list.Location = new System.Drawing.Point(384, 43);
             this.authors_list.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.authors_list.Name = "authors_list";
             this.authors_list.Size = new System.Drawing.Size(178, 124);
@@ -166,7 +166,7 @@
             // 
             // delete_author_btn
             // 
-            this.delete_author_btn.Location = new System.Drawing.Point(343, 335);
+            this.delete_author_btn.Location = new System.Drawing.Point(345, 337);
             this.delete_author_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.delete_author_btn.Name = "delete_author_btn";
             this.delete_author_btn.Size = new System.Drawing.Size(141, 35);
@@ -177,7 +177,7 @@
             // 
             // edit_book_btn
             // 
-            this.edit_book_btn.Location = new System.Drawing.Point(69, 336);
+            this.edit_book_btn.Location = new System.Drawing.Point(52, 337);
             this.edit_book_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edit_book_btn.Name = "edit_book_btn";
             this.edit_book_btn.Size = new System.Drawing.Size(112, 34);
@@ -189,7 +189,8 @@
             // book_data_grid
             // 
             this.book_data_grid.AllowUserToResizeRows = false;
-            this.book_data_grid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.book_data_grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.book_data_grid.BackgroundColor = System.Drawing.Color.White;
             this.book_data_grid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.book_data_grid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.book_data_grid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -212,8 +213,8 @@
             this.book_data_grid.DefaultCellStyle = dataGridViewCellStyle2;
             this.book_data_grid.EnableHeadersVisualStyles = false;
             this.book_data_grid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.book_data_grid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.book_data_grid.Location = new System.Drawing.Point(69, 182);
+            this.book_data_grid.GridColor = System.Drawing.Color.White;
+            this.book_data_grid.Location = new System.Drawing.Point(52, 182);
             this.book_data_grid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.book_data_grid.Name = "book_data_grid";
             this.book_data_grid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -225,15 +226,16 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.book_data_grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.book_data_grid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.book_data_grid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.book_data_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.book_data_grid.Size = new System.Drawing.Size(493, 133);
+            this.book_data_grid.Size = new System.Drawing.Size(510, 133);
             this.book_data_grid.TabIndex = 18;
             this.book_data_grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.showImage);
             // 
             // author_data_grid
             // 
             this.author_data_grid.AllowUserToResizeRows = false;
+            this.author_data_grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.author_data_grid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.author_data_grid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.author_data_grid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
@@ -258,7 +260,7 @@
             this.author_data_grid.EnableHeadersVisualStyles = false;
             this.author_data_grid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.author_data_grid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.author_data_grid.Location = new System.Drawing.Point(61, 128);
+            this.author_data_grid.Location = new System.Drawing.Point(21, 136);
             this.author_data_grid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.author_data_grid.Name = "author_data_grid";
             this.author_data_grid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -272,19 +274,19 @@
             this.author_data_grid.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.author_data_grid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.author_data_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.author_data_grid.Size = new System.Drawing.Size(381, 156);
+            this.author_data_grid.Size = new System.Drawing.Size(465, 179);
             this.author_data_grid.TabIndex = 19;
             // 
             // book_name_text_box
             // 
-            this.book_name_text_box.Location = new System.Drawing.Point(69, 66);
+            this.book_name_text_box.Location = new System.Drawing.Point(113, 78);
             this.book_name_text_box.Name = "book_name_text_box";
             this.book_name_text_box.Size = new System.Drawing.Size(123, 26);
             this.book_name_text_box.TabIndex = 20;
             // 
             // edit_author_btn
             // 
-            this.edit_author_btn.Location = new System.Drawing.Point(200, 335);
+            this.edit_author_btn.Location = new System.Drawing.Point(196, 337);
             this.edit_author_btn.Name = "edit_author_btn";
             this.edit_author_btn.Size = new System.Drawing.Size(97, 35);
             this.edit_author_btn.TabIndex = 21;
@@ -301,7 +303,7 @@
             this.groupBox1.Controls.Add(this.author_heading);
             this.groupBox1.Controls.Add(this.save_author_to_db_button);
             this.groupBox1.Controls.Add(this.delete_author_btn);
-            this.groupBox1.Location = new System.Drawing.Point(665, 122);
+            this.groupBox1.Location = new System.Drawing.Point(665, 49);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(506, 406);
             this.groupBox1.TabIndex = 22;
@@ -319,7 +321,7 @@
             this.groupBox2.Controls.Add(this.book_author_label);
             this.groupBox2.Controls.Add(this.book_name_label);
             this.groupBox2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(33, 122);
+            this.groupBox2.Location = new System.Drawing.Point(33, 49);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(594, 406);
             this.groupBox2.TabIndex = 23;
@@ -332,12 +334,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1200, 600);
+            this.ClientSize = new System.Drawing.Size(1200, 492);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(30, 92, 30, 31);
             this.Load += new System.EventHandler(this.Form1_Load);
