@@ -15,7 +15,8 @@ using System.Drawing.Imaging;
 
 namespace Interface
 {
-    public partial class Form1 : MetroFramework.Forms.MetroForm
+    //public partial class Form1 : MetroFramework.Forms.MetroForm
+    public partial class Form1 : Form
     {
         public Form1()
         {
@@ -398,6 +399,21 @@ namespace Interface
                 form.ShowDialog();
             }
                 
+        }
+
+        private void book_author_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void author_heading_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
