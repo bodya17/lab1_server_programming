@@ -72,10 +72,14 @@ namespace Interface
                 var authorList = context.Authors.Select(x => new {
                     AuthorId = x.AuthorId,
                     Name = x.Name,
+                    Age = x.Age,
+                    City = x.City,
                     Books = x.Books.Select(b => b.Title).ToList()
                 }).ToList().Select(x => new {
                     AuthorId = x.AuthorId,
                     Name = x.Name,
+                    Age = x.Age,
+                    City = x.City,
                     Books = String.Join(this.SEPARATOR, x.Books)
                 }).ToList();
 
@@ -198,11 +202,14 @@ namespace Interface
             {
                 Author author = new Author();
                 author.Name = this.author_name_text_box.Text;
-             
+                author.City = this.city_input.Text;
+                author.Age = Convert.ToInt32(this.age_text_box.Text);
                 context.Authors.Add(author);
                 context.SaveChanges();
             }
             author_name_text_box.Text = "";
+            city_text_box.Text = "";
+            age_text_box.Text = "";
             this.Display();
 
         }
@@ -300,6 +307,9 @@ namespace Interface
                 authorsLabel.Location = new Point(100, 100);
 
                 ListBox authors_list = new ListBox();
+
+                
+                
                 authors_list.SelectionMode = SelectionMode.MultiSimple;
                 authors_list.Location = new Point(200, 100);
 
@@ -314,10 +324,22 @@ namespace Interface
                         pb.Location = new Point(200, 200);
                         pb.Image = ResizeImage(bmp, IMAGE_WIDTH, IMAGE_HEIGHT);
                     }
-                    
-                    authors_list.DataSource = context.Authors.Select(x => x.Name).ToList();
+
+                    var allAUTHORS = context.Authors.Select(x => x.Name).ToList();
+                    var authorsList = context.Books.Where(book => book.BookId == bookId).First().Authors.ToList();
+                    authors_list.DataSource = allAUTHORS;
+                    form.Load += new EventHandler(delegate (object s, EventArgs args)
+                    {
+                        authors_list.SetSelected(0, false);
+                        foreach (var author in authorsList)
+                        {
+                            var indx = allAUTHORS.FindIndex(h => h == author.Name);
+                            authors_list.SetSelected(indx, true);
+                        }
+                       
+                    });
+                        
                 }
-                //authors_list.SelectedIndex = -1;
   
                 Button saveBtn = new Button();
                 saveBtn.Text = "Save changes";
@@ -397,7 +419,13 @@ namespace Interface
             using (var form = new MetroFramework.Forms.MetroForm())
             {
                 editAuthorForm.Controls["author_name"].Text = author_data_grid.SelectedRows[0].Cells[1].Value.ToString();
-                
+                editAuthorForm.Controls["city_text_box"].Text = author_data_grid.SelectedRows[0].Cells[3].Value.ToString();
+                editAuthorForm.Controls["age_text_box"].Text = author_data_grid.SelectedRows[0].Cells[2].Value.ToString();
+
+
+                //editAuthorForm.Controls["author_name"].Text = author_data_grid.SelectedRows[0].Cells[1].Value.ToString();
+
+
                 form.Size = new Size(600, 400);
                 form.Controls.Add(editAuthorForm);
                 form.Controls[0].Controls["save_author_btn"].Click += new EventHandler(delegate (object s, EventArgs args)
@@ -407,6 +435,8 @@ namespace Interface
                         var authorId = Convert.ToInt32(author_data_grid.SelectedRows[0].Cells[0].Value);
                         Author authorToUpdate = context.Authors.Where(x => x.AuthorId == authorId).Select(x => x).FirstOrDefault();
                         authorToUpdate.Name = form.Controls[0].Controls["author_name"].Text;
+                        authorToUpdate.City = form.Controls[0].Controls["city_text_box"].Text;
+                        authorToUpdate.Age = Convert.ToInt32(form.Controls[0].Controls["age_text_box"].Text);
                         context.SaveChanges();
                     }
                     this.Display();
@@ -429,6 +459,11 @@ namespace Interface
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void author_name_text_box_TextChanged(object sender, EventArgs e)
         {
 
         }
