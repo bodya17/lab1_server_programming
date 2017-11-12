@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Interface.DataModel;
 using System.Data.Entity;
@@ -15,7 +11,6 @@ using System.Drawing.Imaging;
 
 namespace Interface
 {
-    //public partial class Form1 : MetroFramework.Forms.MetroForm
     public partial class Form1 : Form
     {
         public Form1()
@@ -28,11 +23,9 @@ namespace Interface
         private bool isIDAtZero;
         private bool renderUpdateButtons;
         private string SEPARATOR = " / ";
-        // gets data from db and puts it into datagrid
 
         private byte[] openFile()
         {
-            Stream myStream = null;
             OpenFileDialog theDialog = new OpenFileDialog();
             theDialog.Title = "Select Image for book";
             theDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|All files (*.*)|*.*";
@@ -45,7 +38,6 @@ namespace Interface
 
                 data = new byte[fileInfo.Length];
 
-                // Load a filestream and put its content into the byte[]
                 using (FileStream fs = fileInfo.OpenRead())
                 {
                     fs.Read(data, 0, data.Length);
@@ -83,14 +75,11 @@ namespace Interface
                     Books = String.Join(this.SEPARATOR, x.Books)
                 }).ToList();
 
-
                 book_data_grid.DataSource = bookList;
                 author_data_grid.DataSource = authorList;
 
                 this.authors_list.SelectionMode = SelectionMode.MultiSimple;
-
                 this.authors_list.DataSource = context.Authors.Select(x => x.Name).ToList();
-
             }
 
             if (this.renderUpdateButtons)
@@ -138,25 +127,18 @@ namespace Interface
         {
             if (book_data_grid.Rows.Count > 0)
             {
-                foreach (DataGridViewRow row in book_data_grid.SelectedRows) // foreach datagridview selected rows values  
+                foreach (DataGridViewRow row in book_data_grid.SelectedRows)
                 {
+                    int id = this.isIDAtZero
+                        ? Convert.ToInt32(row.Cells[0].Value)
+                        : Convert.ToInt32(row.Cells[1].Value);
 
-                    int id;
-                    if (this.isIDAtZero)
-                    {
-                        id = Convert.ToInt32(row.Cells[0].Value);
-                    }
-                    else
-                    {
-                        id = Convert.ToInt32(row.Cells[1].Value);
-                    }
                     using (LibraryContext context = new LibraryContext())
                     {
                         Book bookToDelete = context.Books.Where(x => x.BookId == id).Select(x => x).FirstOrDefault();
                         context.Entry(bookToDelete).State = System.Data.Entity.EntityState.Deleted;
                         context.SaveChanges();
                     }
-                    
                 }
                 this.Display();
             }
@@ -187,12 +169,9 @@ namespace Interface
                             form.Controls.Add(pb);
                             form.ShowDialog();
                         }
-
                     }
-
                 }
             }
-
         }
 
         private void saveAuthorToDB(object sender, EventArgs e)
@@ -211,7 +190,6 @@ namespace Interface
             city_text_box.Text = "";
             age_text_box.Text = "";
             this.Display();
-
         }
 
         private void delete_author_btn_Click(object sender, EventArgs e)
@@ -220,7 +198,6 @@ namespace Interface
             {
                 foreach (DataGridViewRow row in author_data_grid.SelectedRows) // foreach datagridview selected rows values  
                 {
-
                     var id = Convert.ToInt32(row.Cells[0].Value);
                     
                     using (LibraryContext context = new LibraryContext())
@@ -232,11 +209,6 @@ namespace Interface
                 }
                 this.Display();
             }
-        }
-
-        private void open_file_btn_Click(object sender, EventArgs e)
-        {
-            this.openFile();
         }
 
         // https://stackoverflow.com/questions/1922040/resize-an-image-c-sharp
@@ -271,18 +243,10 @@ namespace Interface
             const int IMAGE_WIDTH = 100;
             var rowIndex = book_data_grid.CurrentCell.RowIndex;
 
-            int bookId;
             int i = this.isIDAtZero ? 0 : 1;
-            if (this.isIDAtZero)
-            {
-                bookId = Convert.ToInt32(book_data_grid.Rows[rowIndex].Cells[0].Value);
-            }
-
-            else
-            {
-               
-                bookId = Convert.ToInt32(book_data_grid.Rows[rowIndex].Cells[1].Value);
-            }
+            int bookId = this.isIDAtZero
+                ? Convert.ToInt32(book_data_grid.Rows[rowIndex].Cells[0].Value)
+                : Convert.ToInt32(book_data_grid.Rows[rowIndex].Cells[1].Value);
 
             var bookTitle = book_data_grid.Rows[rowIndex].Cells[i+1].Value.ToString();
             var authors = book_data_grid.Rows[rowIndex].Cells[i+2].Value.ToString();
@@ -290,7 +254,6 @@ namespace Interface
 
             using (var form = new MetroFramework.Forms.MetroForm())
             {
-                form.Text = "Book editor";
                 form.StartPosition = FormStartPosition.CenterScreen;
                 form.Size = new Size(600, 450);
 
@@ -308,8 +271,6 @@ namespace Interface
 
                 ListBox authors_list = new ListBox();
 
-                
-                
                 authors_list.SelectionMode = SelectionMode.MultiSimple;
                 authors_list.Location = new Point(200, 100);
 
@@ -399,17 +360,9 @@ namespace Interface
                 form.Controls.Add(pb);
                 form.Controls.Add(changeImageBtn);
                 form.ShowDialog();
-                    
             }
         }
 
-        private void metroButton1_Click(object sender, EventArgs e)
-        {
-            using (addForm form = new addForm())
-            {
-                form.ShowDialog();
-            }
-        }
 
         private void edit_author_btn_Click(object sender, EventArgs e)
         {
@@ -420,10 +373,6 @@ namespace Interface
                 editAuthorForm.Controls["author_name"].Text = author_data_grid.SelectedRows[0].Cells[1].Value.ToString();
                 editAuthorForm.Controls["city_text_box"].Text = author_data_grid.SelectedRows[0].Cells[3].Value.ToString();
                 editAuthorForm.Controls["age_text_box"].Text = author_data_grid.SelectedRows[0].Cells[2].Value.ToString();
-
-
-                //editAuthorForm.Controls["author_name"].Text = author_data_grid.SelectedRows[0].Cells[1].Value.ToString();
-
 
                 form.Size = new Size(600, 400);
                 form.Controls.Add(editAuthorForm);
