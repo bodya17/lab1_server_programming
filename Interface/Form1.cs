@@ -202,7 +202,7 @@ namespace Interface
             {
                 Author author = new Author();
                 author.Name = this.author_name_text_box.Text;
-                author.City = this.city_input.Text;
+                author.City = this.city_text_box.Text;
                 author.Age = Convert.ToInt32(this.age_text_box.Text);
                 context.Authors.Add(author);
                 context.SaveChanges();
