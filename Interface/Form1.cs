@@ -400,7 +400,9 @@ namespace Interface
                         var allBooksTitles = context.Books.Select(b => b.Title).ToList();
                         l.DataSource = allBooksTitles;
                         Author authorToEdit = context.Authors.Where(author => author.AuthorId == id).First();
-                        l.SetSelected(0, false);
+                        if (l.Items.Count > 0)
+                            l.SetSelected(0, false);
+
                         foreach (var book in authorToEdit.Books.ToList())
                         {
                             var indx = allBooksTitles.FindIndex(h => h == book.Title);
