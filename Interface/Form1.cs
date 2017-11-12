@@ -134,7 +134,7 @@ namespace Interface
             this.Display();
         }
 
-        private void deleteFromDb(object sender, EventArgs e)
+        private void deleteBookFromDb(object sender, EventArgs e)
         {
             if (book_data_grid.Rows.Count > 0)
             {
@@ -372,7 +372,6 @@ namespace Interface
                 changeImageBtn.Text = "Change Image";
                 changeImageBtn.Location = new Point(320, 250);
                 changeImageBtn.Click += new EventHandler(delegate (object s, EventArgs args) {
-                    //form.Close();
                     
                     booksImage = openFile();
                     if (booksImage != null) {
@@ -446,26 +445,6 @@ namespace Interface
                 form.ShowDialog();
             }
                 
-        }
-
-        private void book_author_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void author_heading_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void author_name_text_box_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

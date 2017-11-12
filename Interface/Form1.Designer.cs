@@ -35,44 +35,33 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.save_book_to_db_btn = new System.Windows.Forms.Button();
             this.book_name_label = new System.Windows.Forms.Label();
             this.book_author_label = new System.Windows.Forms.Label();
-            this.delete_book_btn = new System.Windows.Forms.Button();
             this.book_heading = new System.Windows.Forms.Label();
             this.author_heading = new System.Windows.Forms.Label();
             this.author_name_text_box = new System.Windows.Forms.TextBox();
             this.author_label = new System.Windows.Forms.Label();
-            this.save_author_to_db_button = new System.Windows.Forms.Button();
             this.authors_list = new System.Windows.Forms.ListBox();
-            this.delete_author_btn = new System.Windows.Forms.Button();
-            this.edit_book_btn = new System.Windows.Forms.Button();
             this.book_data_grid = new MetroFramework.Controls.MetroGrid();
             this.author_data_grid = new MetroFramework.Controls.MetroGrid();
             this.book_name_text_box = new System.Windows.Forms.TextBox();
-            this.edit_author_btn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.delete_author_btn = new MetroFramework.Controls.MetroTile();
+            this.edit_author_btn = new MetroFramework.Controls.MetroTile();
+            this.save_author_to_db_button = new MetroFramework.Controls.MetroTile();
             this.age_text_box = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.city_text_box = new System.Windows.Forms.TextBox();
             this.city_input = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.delete_book_btn = new MetroFramework.Controls.MetroTile();
+            this.save_book_to_db_btn = new MetroFramework.Controls.MetroTile();
+            this.edit_book_btn = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.book_data_grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.author_data_grid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // save_book_to_db_btn
-            // 
-            this.save_book_to_db_btn.Location = new System.Drawing.Point(218, 336);
-            this.save_book_to_db_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.save_book_to_db_btn.Name = "save_book_to_db_btn";
-            this.save_book_to_db_btn.Size = new System.Drawing.Size(112, 35);
-            this.save_book_to_db_btn.TabIndex = 5;
-            this.save_book_to_db_btn.Text = "Save to DB";
-            this.save_book_to_db_btn.UseVisualStyleBackColor = true;
-            this.save_book_to_db_btn.Click += new System.EventHandler(this.createNewBookInDb);
             // 
             // book_name_label
             // 
@@ -93,18 +82,6 @@
             this.book_author_label.Size = new System.Drawing.Size(58, 20);
             this.book_author_label.TabIndex = 4;
             this.book_author_label.Text = "Author";
-            this.book_author_label.Click += new System.EventHandler(this.book_author_label_Click);
-            // 
-            // delete_book_btn
-            // 
-            this.delete_book_btn.Location = new System.Drawing.Point(404, 336);
-            this.delete_book_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.delete_book_btn.Name = "delete_book_btn";
-            this.delete_book_btn.Size = new System.Drawing.Size(158, 35);
-            this.delete_book_btn.TabIndex = 6;
-            this.delete_book_btn.Text = "Delete selected";
-            this.delete_book_btn.UseVisualStyleBackColor = true;
-            this.delete_book_btn.Click += new System.EventHandler(this.deleteFromDb);
             // 
             // book_heading
             // 
@@ -127,7 +104,6 @@
             this.author_heading.Size = new System.Drawing.Size(99, 28);
             this.author_heading.TabIndex = 8;
             this.author_heading.Text = "Authors";
-            this.author_heading.Click += new System.EventHandler(this.author_heading_Click);
             // 
             // author_name_text_box
             // 
@@ -136,7 +112,6 @@
             this.author_name_text_box.Name = "author_name_text_box";
             this.author_name_text_box.Size = new System.Drawing.Size(148, 26);
             this.author_name_text_box.TabIndex = 11;
-            this.author_name_text_box.TextChanged += new System.EventHandler(this.author_name_text_box_TextChanged);
             // 
             // author_label
             // 
@@ -148,17 +123,6 @@
             this.author_label.TabIndex = 12;
             this.author_label.Text = "Author name";
             // 
-            // save_author_to_db_button
-            // 
-            this.save_author_to_db_button.Location = new System.Drawing.Point(21, 336);
-            this.save_author_to_db_button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.save_author_to_db_button.Name = "save_author_to_db_button";
-            this.save_author_to_db_button.Size = new System.Drawing.Size(112, 35);
-            this.save_author_to_db_button.TabIndex = 15;
-            this.save_author_to_db_button.Text = "Save to DB";
-            this.save_author_to_db_button.UseVisualStyleBackColor = true;
-            this.save_author_to_db_button.Click += new System.EventHandler(this.saveAuthorToDB);
-            // 
             // authors_list
             // 
             this.authors_list.FormattingEnabled = true;
@@ -168,29 +132,6 @@
             this.authors_list.Name = "authors_list";
             this.authors_list.Size = new System.Drawing.Size(178, 124);
             this.authors_list.TabIndex = 2;
-            // 
-            // delete_author_btn
-            // 
-            this.delete_author_btn.Location = new System.Drawing.Point(343, 336);
-            this.delete_author_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.delete_author_btn.Name = "delete_author_btn";
-            this.delete_author_btn.Size = new System.Drawing.Size(141, 35);
-            this.delete_author_btn.TabIndex = 17;
-            this.delete_author_btn.Text = "Delete Selected";
-            this.delete_author_btn.UseCompatibleTextRendering = true;
-            this.delete_author_btn.UseVisualStyleBackColor = true;
-            this.delete_author_btn.Click += new System.EventHandler(this.delete_author_btn_Click);
-            // 
-            // edit_book_btn
-            // 
-            this.edit_book_btn.Location = new System.Drawing.Point(21, 336);
-            this.edit_book_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.edit_book_btn.Name = "edit_book_btn";
-            this.edit_book_btn.Size = new System.Drawing.Size(112, 34);
-            this.edit_book_btn.TabIndex = 4;
-            this.edit_book_btn.Text = "Edit";
-            this.edit_book_btn.UseVisualStyleBackColor = true;
-            this.edit_book_btn.Click += new System.EventHandler(this.edit_book_btn_Click);
             // 
             // book_data_grid
             // 
@@ -290,34 +231,69 @@
             this.book_name_text_box.Size = new System.Drawing.Size(123, 26);
             this.book_name_text_box.TabIndex = 1;
             // 
-            // edit_author_btn
-            // 
-            this.edit_author_btn.Location = new System.Drawing.Point(194, 336);
-            this.edit_author_btn.Name = "edit_author_btn";
-            this.edit_author_btn.Size = new System.Drawing.Size(97, 35);
-            this.edit_author_btn.TabIndex = 16;
-            this.edit_author_btn.Text = "Edit Author";
-            this.edit_author_btn.UseVisualStyleBackColor = true;
-            this.edit_author_btn.Click += new System.EventHandler(this.edit_author_btn_Click);
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.delete_author_btn);
+            this.groupBox1.Controls.Add(this.edit_author_btn);
+            this.groupBox1.Controls.Add(this.save_author_to_db_button);
             this.groupBox1.Controls.Add(this.age_text_box);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.city_text_box);
             this.groupBox1.Controls.Add(this.city_input);
             this.groupBox1.Controls.Add(this.author_label);
-            this.groupBox1.Controls.Add(this.edit_author_btn);
             this.groupBox1.Controls.Add(this.author_data_grid);
             this.groupBox1.Controls.Add(this.author_name_text_box);
             this.groupBox1.Controls.Add(this.author_heading);
-            this.groupBox1.Controls.Add(this.save_author_to_db_button);
-            this.groupBox1.Controls.Add(this.delete_author_btn);
             this.groupBox1.Location = new System.Drawing.Point(665, 49);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(506, 406);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
+            // 
+            // delete_author_btn
+            // 
+            this.delete_author_btn.ActiveControl = null;
+            this.delete_author_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.delete_author_btn.Location = new System.Drawing.Point(364, 336);
+            this.delete_author_btn.Name = "delete_author_btn";
+            this.delete_author_btn.Size = new System.Drawing.Size(120, 62);
+            this.delete_author_btn.TabIndex = 27;
+            this.delete_author_btn.Text = "Delete";
+            this.delete_author_btn.TileImage = ((System.Drawing.Image)(resources.GetObject("delete_author_btn.TileImage")));
+            this.delete_author_btn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.delete_author_btn.UseSelectable = true;
+            this.delete_author_btn.UseTileImage = true;
+            this.delete_author_btn.Click += new System.EventHandler(this.delete_author_btn_Click);
+            // 
+            // edit_author_btn
+            // 
+            this.edit_author_btn.ActiveControl = null;
+            this.edit_author_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.edit_author_btn.Location = new System.Drawing.Point(21, 336);
+            this.edit_author_btn.Name = "edit_author_btn";
+            this.edit_author_btn.Size = new System.Drawing.Size(123, 62);
+            this.edit_author_btn.TabIndex = 26;
+            this.edit_author_btn.Text = "Edit";
+            this.edit_author_btn.TileImage = ((System.Drawing.Image)(resources.GetObject("edit_author_btn.TileImage")));
+            this.edit_author_btn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.edit_author_btn.UseSelectable = true;
+            this.edit_author_btn.UseTileImage = true;
+            this.edit_author_btn.Click += new System.EventHandler(this.edit_author_btn_Click);
+            // 
+            // save_author_to_db_button
+            // 
+            this.save_author_to_db_button.ActiveControl = null;
+            this.save_author_to_db_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.save_author_to_db_button.Location = new System.Drawing.Point(196, 336);
+            this.save_author_to_db_button.Name = "save_author_to_db_button";
+            this.save_author_to_db_button.Size = new System.Drawing.Size(122, 62);
+            this.save_author_to_db_button.TabIndex = 25;
+            this.save_author_to_db_button.Text = "Save";
+            this.save_author_to_db_button.TileImage = ((System.Drawing.Image)(resources.GetObject("save_author_to_db_button.TileImage")));
+            this.save_author_to_db_button.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.save_author_to_db_button.UseSelectable = true;
+            this.save_author_to_db_button.UseTileImage = true;
+            this.save_author_to_db_button.Click += new System.EventHandler(this.saveAuthorToDB);
             // 
             // age_text_box
             // 
@@ -353,12 +329,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.delete_book_btn);
+            this.groupBox2.Controls.Add(this.save_book_to_db_btn);
+            this.groupBox2.Controls.Add(this.edit_book_btn);
             this.groupBox2.Controls.Add(this.book_heading);
             this.groupBox2.Controls.Add(this.authors_list);
-            this.groupBox2.Controls.Add(this.edit_book_btn);
             this.groupBox2.Controls.Add(this.book_data_grid);
-            this.groupBox2.Controls.Add(this.save_book_to_db_btn);
-            this.groupBox2.Controls.Add(this.delete_book_btn);
             this.groupBox2.Controls.Add(this.book_name_text_box);
             this.groupBox2.Controls.Add(this.book_author_label);
             this.groupBox2.Controls.Add(this.book_name_label);
@@ -368,7 +344,51 @@
             this.groupBox2.Size = new System.Drawing.Size(594, 406);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // delete_book_btn
+            // 
+            this.delete_book_btn.ActiveControl = null;
+            this.delete_book_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.delete_book_btn.Location = new System.Drawing.Point(426, 336);
+            this.delete_book_btn.Name = "delete_book_btn";
+            this.delete_book_btn.Size = new System.Drawing.Size(136, 62);
+            this.delete_book_btn.TabIndex = 10;
+            this.delete_book_btn.Text = "Delete";
+            this.delete_book_btn.TileImage = ((System.Drawing.Image)(resources.GetObject("delete_book_btn.TileImage")));
+            this.delete_book_btn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.delete_book_btn.UseSelectable = true;
+            this.delete_book_btn.UseTileImage = true;
+            this.delete_book_btn.Click += new System.EventHandler(this.deleteBookFromDb);
+            // 
+            // save_book_to_db_btn
+            // 
+            this.save_book_to_db_btn.ActiveControl = null;
+            this.save_book_to_db_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.save_book_to_db_btn.Location = new System.Drawing.Point(215, 336);
+            this.save_book_to_db_btn.Name = "save_book_to_db_btn";
+            this.save_book_to_db_btn.Size = new System.Drawing.Size(144, 64);
+            this.save_book_to_db_btn.TabIndex = 9;
+            this.save_book_to_db_btn.Text = "Save";
+            this.save_book_to_db_btn.TileImage = ((System.Drawing.Image)(resources.GetObject("save_book_to_db_btn.TileImage")));
+            this.save_book_to_db_btn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.save_book_to_db_btn.UseSelectable = true;
+            this.save_book_to_db_btn.UseTileImage = true;
+            this.save_book_to_db_btn.Click += new System.EventHandler(this.createNewBookInDb);
+            // 
+            // edit_book_btn
+            // 
+            this.edit_book_btn.ActiveControl = null;
+            this.edit_book_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.edit_book_btn.Location = new System.Drawing.Point(21, 336);
+            this.edit_book_btn.Name = "edit_book_btn";
+            this.edit_book_btn.Size = new System.Drawing.Size(136, 64);
+            this.edit_book_btn.TabIndex = 8;
+            this.edit_book_btn.Text = "Edit";
+            this.edit_book_btn.TileImage = ((System.Drawing.Image)(resources.GetObject("edit_book_btn.TileImage")));
+            this.edit_book_btn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.edit_book_btn.UseSelectable = true;
+            this.edit_book_btn.UseTileImage = true;
+            this.edit_book_btn.Click += new System.EventHandler(this.edit_book_btn_Click);
             // 
             // Form1
             // 
@@ -398,29 +418,28 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button save_book_to_db_btn;
         private System.Windows.Forms.Label book_name_label;
         private System.Windows.Forms.Label book_author_label;
-        private System.Windows.Forms.Button delete_book_btn;
         private System.Windows.Forms.Label book_heading;
         private System.Windows.Forms.Label author_heading;
         private System.Windows.Forms.TextBox author_name_text_box;
         private System.Windows.Forms.Label author_label;
-        private System.Windows.Forms.Button save_author_to_db_button;
         private System.Windows.Forms.ListBox authors_list;
-        private System.Windows.Forms.Button delete_author_btn;
-        private System.Windows.Forms.Button edit_book_btn;
         private MetroFramework.Controls.MetroGrid book_data_grid;
         private MetroFramework.Controls.MetroGrid author_data_grid;
         private System.Windows.Forms.TextBox book_name_text_box;
-        private System.Windows.Forms.Button edit_author_btn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox city_text_box;
         private System.Windows.Forms.Label city_input;
         private System.Windows.Forms.TextBox age_text_box;
         private System.Windows.Forms.Label label1;
+        private MetroFramework.Controls.MetroTile delete_book_btn;
+        private MetroFramework.Controls.MetroTile save_book_to_db_btn;
+        private MetroFramework.Controls.MetroTile edit_book_btn;
+        private MetroFramework.Controls.MetroTile delete_author_btn;
+        private MetroFramework.Controls.MetroTile edit_author_btn;
+        private MetroFramework.Controls.MetroTile save_author_to_db_button;
     }
 }
 
